@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+
+TODAY="$(date '+%Y/%m/%d%n')"
+mkdir -p $TODAY
+
+USERNAME=${GITHUB_USERNAME:-"who"}
+TODAY_FILE=$TODAY/$USERNAME.md
+
+cat template.md > $TODAY_FILE
+sed -i '' -e "s|# 2020\/xx\/xx|# $TODAY|" $TODAY_FILE
+echo create $TODAY_FILE
